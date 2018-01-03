@@ -14,9 +14,11 @@ import javafx.stage.Stage;
 import javafx.scene.Group;
  
 public class easygame extends Application {
-    static int counter=0;
+    static int counter;
+    static boolean shown;
     public static void main(String[] args) {
     	counter=0;
+    	boolean shown=false;
         launch(args);
     }
 
@@ -24,7 +26,7 @@ public class easygame extends Application {
     public void start(Stage primaryStage) {
         primaryStage.setTitle("Hello World!");
         Button btn = new Button();
-        btn.setText("Say 'Hello World'");
+        btn.setText("Cookie Clicker");
         
         long duration=10000000000L;
         
@@ -36,9 +38,10 @@ public class easygame extends Application {
         	{
         		counter++;
         	}
-        	else
+        	else if(shown==false)
         	{
-        	System.out.println(counter);
+        		shown=true;
+        		System.out.println(counter);
         	}
         });
         	StackPane root = new StackPane();
