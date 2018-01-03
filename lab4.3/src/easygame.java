@@ -1,3 +1,8 @@
+/*
+ * Name:Derek Yu, Yiren Mai
+ * Date:1/3/18
+ */
+import java.awt.event.MouseEvent;
 import javafx.animation.*;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -6,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import javafx.scene.Group;
  
 public class easygame extends Application {
     static int counter=0;
@@ -23,20 +29,18 @@ public class easygame extends Application {
         long duration=10000000000L;
         
         long endNanoTime = System.nanoTime()+duration;
-        new AnimationTimer()
+        btn.setOnAction((e)->
         {
-            public void handle(long currentNanoTime)
-            {
-            	long t=currentNanoTime-endNanoTime; 
-            	if(t>0)
-            	{
-            		System.out.println(counter);
-            		stop();
-            	}
-            	counter++;
-            }
-        }.start();
-   
+        	long currentNanoTime=System.nanoTime();
+        	if(currentNanoTime<endNanoTime)
+        	{
+        		counter++;
+        	}
+        	else
+        	{
+        	System.out.println(counter);
+        	}
+        });
         	StackPane root = new StackPane();
 	        root.getChildren().add(btn);
 	        primaryStage.setScene(new Scene(root, 300, 250));
