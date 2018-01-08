@@ -12,13 +12,31 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.scene.Group;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
  
 public class easygame extends Application {
-    static int counter;
-    static boolean shown;
+	private static int counter;
+    private static boolean shown;
     public static void main(String[] args) {
+    	PrintWriter pw = null;
+    	try 
+    	{
+    		pw = new PrintWriter(new File("results.csv"));
+    	}
+    	catch(FileNotFoundException e)
+    	{
+    		System.err.println(e);
+    	}
+    	StringBuilder sb = new StringBuilder();
+    	sb.append("Name,High Score\n");
+    	sb.append("Derek,60\n");
+    	sb.append("Yiren,50\n");
+    	sb.append("Other,40\n");
+    	pw.write(sb.toString());
+    	pw.close();
     	counter=0;
-    	boolean shown=false;
         launch(args);
     }
 
