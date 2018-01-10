@@ -29,10 +29,11 @@ public class easygame extends Application {
     private static PrintWriter pw;
     private static String boardlist=""; 
     public static void main(String[] args) throws IOException {
-    	System.out.println("Hello there what should I call you?");
+    	/*System.out.println("Hello there what should I call you?");
     	Scanner sc = new Scanner(System.in);
         String i = sc.next();
         name=i;
+        */
        
         System.out.println("High Score List");
     	String csvFile ="results.csv";
@@ -45,7 +46,7 @@ public class easygame extends Application {
 
             // use comma as separator
             String[] board = line.split(",");
-            System.out.println(line);
+            boardlist="";
             boardlist+=line+"\n";
             System.out.println(board[0]+ "  "+board[1]);
 
@@ -73,9 +74,15 @@ public class easygame extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        primaryStage.setTitle("Hello World!");
+        primaryStage.setTitle("CLICK THE COOKIE!");
         Button btn = new Button();
+        btn.setTranslateY(30);
         btn.setText("Cookie Clicker");
+        
+        Button btn1= new Button();
+        btn1.setTranslateY(60);
+        btn1.setText("Start");
+      
         
         long duration=10000000000L;
         
@@ -101,6 +108,7 @@ public class easygame extends Application {
         });
         	StackPane root = new StackPane();
 	        root.getChildren().add(btn);
+	        root.getChildren().add(btn1);
 	        primaryStage.setScene(new Scene(root, 300, 250));
 	        primaryStage.show();
 
