@@ -27,7 +27,7 @@ public class easygame extends Application {
     private static String name;
     private static String sb;
     private static PrintWriter pw;
-    private static String boardlist; 
+    private static String boardlist=""; 
     public static void main(String[] args) throws IOException {
     	System.out.println("Hello there what should I call you?");
     	Scanner sc = new Scanner(System.in);
@@ -45,6 +45,7 @@ public class easygame extends Application {
 
             // use comma as separator
             String[] board = line.split(",");
+            System.out.println(line);
             boardlist+=line+"\n";
             System.out.println(board[0]+ "  "+board[1]);
 
@@ -91,6 +92,7 @@ public class easygame extends Application {
         		shown=true;
         		System.out.println("In 10 seconds you have clicked it "+counter+ " times");
         		sb=name+","+ Integer.toString(counter)+"\n";
+        		System.out.println(sb);
         		boardlist+=sb;
         		pw.write(boardlist);
             	pw.close();
