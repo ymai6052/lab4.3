@@ -25,49 +25,35 @@ public class easygame extends Application {
 	private static int counter;
     private boolean shown;
     private static String name;
-    private static String sb;
+    private static StringBuilder sb=new StringBuilder();
     private static PrintWriter pw;
-    private static String boardlist=""; 
+    
     public static void main(String[] args) throws IOException {
     	/*System.out.println("Hello there what should I call you?");
     	Scanner sc = new Scanner(System.in);
         String i = sc.next();
         name=i;
         */
-       
-        System.out.println("High Score List");
+    	
+        System.out.println("High Score List");  	
     	String csvFile ="results.csv";
     	BufferedReader br = null;
     	br = new BufferedReader(new FileReader(csvFile));
     	String line="";
     	
+    	
     	while ((line = br.readLine()) != null)
     	{
 
             // use comma as separator
-            String[] board = line.split(",");
-            boardlist="";
-            boardlist+=line+"\n";
-            System.out.println(board[0]+ "  "+board[1]);
-
+    		 String[] board = line.split(",");
+             System.out.println(board[0]+ "  "+board[1]);
+            sb.append(board[0]+ ","+board[1]+"\n");
         }
-
     	
-    	/*sb = new StringBuilder();
-    	sb.append("Name,High Score\n");
-    	sb.append("Derek,60\n");
-    	sb.append("Yiren,50\n");
-    	sb.append("Other,40\n");
-    	*/
-    	try 
-    	{
-    		pw = new PrintWriter(new File("results.csv"));
-    	}
-    	catch(FileNotFoundException e)
-    	{
-    		System.err.println(e);
-    	}
-    	 System.out.println("How many times can u click the button in 10 seconds?");
+    	pw=new PrintWriter(new File("results.csv"));
+    	
+    	System.out.println("How many times can u click the button in 10 seconds?");
     	counter=0;
         launch(args);
     }
@@ -84,7 +70,7 @@ public class easygame extends Application {
         btn1.setText("Start");
       
         
-        long duration=10000000000L;
+        long duration=1000000000L;
         
         long endNanoTime = System.nanoTime()+duration;
         btn.setOnAction((e)->
@@ -98,10 +84,8 @@ public class easygame extends Application {
         	{
         		shown=true;
         		System.out.println("In 10 seconds you have clicked it "+counter+ " times");
-        		sb=name+","+ Integer.toString(counter)+"\n";
-        		System.out.println(sb);
-        		boardlist+=sb;
-        		pw.write(boardlist);
+        		sb.append(name+","+ Integer.toString(counter)+"\n");
+        		pw.write(sb.toString());
             	pw.close();
             	
         	}
